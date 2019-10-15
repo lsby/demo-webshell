@@ -1,11 +1,35 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+
+<head>
+    <title>webshell</title>
+    <script src="/jquery/jquery.min.js"></script>
+    <script src="/jquery.terminal/js/jquery.terminal.min.js"></script>
+    <link href="/jquery.terminal/css/jquery.terminal.min.css" rel="stylesheet" />
+</head>
+
+<style>
+    .terminal {
+        --color: rgba(0, 128, 0, 0.99);
+        --background: #000000;
+    }
+</style>
+
+<body style="margin:0 auto;height:100%;">
+</body>
+
+<script>
+    $(function () {
+        $('body').terminal(function (cmd) {
+            this.echo(cmd)
+        }, {
+            greetings: '欢迎来到模拟终端',
+            completion: function (str, back) {
+                back(['ls', 'cd', 'help', 'cat'])
+            },
+            prompt: 'js> '
+        })
+    })
+</script>
+
 </html>
